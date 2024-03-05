@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+               git 'https://github.com/rakeshkumar707/maven_project.git'
+               bat 'mvn clean install'
+            }
+        }
+        stage ('java') {
+            steps {
+                git 'https://github.com/rakeshkumar707/java_project.git'
+                bat '''javac HelloWorld.java 
+                       java HelloWorld'''
+            }
+        }
+    }
+}
